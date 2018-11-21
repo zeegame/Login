@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "139157203745",
+    "firebase_url": "https://login-246b3.firebaseio.com",
+    "project_id": "login-246b3",
+    "storage_bucket": "login-246b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139157203745:android:2098f9a71b067364",
+        "android_client_info": {
+          "package_name": "com.forgan.login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139157203745-ar5on7k4ugplicq1gcnl6dvvula9ck7r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.forgan.login",
+            "certificate_hash": "044ffe35fadfc83aad4873d1c3714f81e2cbfe3a"
+          }
+        },
+        {
+          "client_id": "139157203745-mvoc0a27fnl0jd7tlrledrkopd5md1j5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpdF7IU3j3sh5TG71kStG3WoAJtoQaojg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139157203745-mvoc0a27fnl0jd7tlrledrkopd5md1j5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
