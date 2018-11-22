@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     private EditText inputEmail, inputPassword;
-    private Button btnRegister;
+    private Button btn_signup,btn_login;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
 
@@ -27,12 +27,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         auth = FirebaseAuth.getInstance();
-        btnRegister = (Button) findViewById(R.id.sign_up_buton);
+        btn_signup = (Button) findViewById(R.id.btn_signup);
+        btn_login = (Button) findViewById(R.id.btn_login);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 //Todo Continue Development
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = inputEmail.getText().toString().trim();
@@ -69,10 +70,43 @@ public class MainActivity extends AppCompatActivity {
                                         } else {
                                             Toast.makeText(MainActivity.this, "Success!",
                                                     Toast.LENGTH_SHORT).show();
-                                            finish();
                                         }
                                     }
                                 });
+            }
+        });
+        auth = FirebaseAuth.getInstance();
+        //Login
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = inputEmail.getText().toString();
+                final String password = inputPassword.getText().toString();
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(getApplicationContext(), "Enter email address!",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(getApplicationContext(), "Enter password!",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                progressBar.setVisibility(View.VISIBLE);
+                //authenticate user
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new
+                        OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                progressBar.setVisibility(View.GONE);
+                                 if (task.isSuccessful()){
+                                    Intent intent = new Intent(MainActivity.this, Detailactivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+                        });
+
             }
         });
 
