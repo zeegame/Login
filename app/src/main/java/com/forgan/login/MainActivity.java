@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
                                                             task.getException(),
                                                     Toast.LENGTH_SHORT).show();
                                         } else {
+                                            Intent intent = new Intent(MainActivity.this, Detailactivity.class);
+                                            startActivity(intent);
                                             Toast.makeText(MainActivity.this, "Success!",
                                                     Toast.LENGTH_SHORT).show();
                                         }
@@ -102,8 +104,13 @@ public class MainActivity extends AppCompatActivity {
                                  if (task.isSuccessful()){
                                     Intent intent = new Intent(MainActivity.this, Detailactivity.class);
                                     startActivity(intent);
-                                    finish();
+                                     Toast.makeText(MainActivity.this, "Login Success!",
+                                             Toast.LENGTH_SHORT).show();
                                 }
+                                else {
+                                     Toast.makeText(MainActivity.this, "Login Failed!",
+                                             Toast.LENGTH_SHORT).show();
+                                 }
                             }
                         });
 
