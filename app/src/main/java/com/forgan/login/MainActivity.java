@@ -17,6 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
+
     private EditText inputEmail, inputPassword;
     private Button btn_signup,btn_login;
     private ProgressBar progressBar;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-//Todo Continue Development
+    //Todo Continue Dev
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 progressBar.setVisibility(View.VISIBLE);
-//Todo Authen App
+                //Todo Authen App
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(MainActivity.this, new
                                 OnCompleteListener<AuthResult>() {
@@ -68,10 +69,10 @@ public class MainActivity extends AppCompatActivity {
                                                             task.getException(),
                                                     Toast.LENGTH_SHORT).show();
                                         } else {
-                                            Intent intent = new Intent(MainActivity.this, Detailactivity.class);
-                                            startActivity(intent);
                                             Toast.makeText(MainActivity.this, "Success!",
                                                     Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(MainActivity.this, Detailactivity.class);
+                                            startActivity(intent);
                                         }
                                     }
                                 });
@@ -101,22 +102,23 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
-                                 if (task.isSuccessful()){
+                                if (!task.isSuccessful()) {
+                                    // there was an error
+                                    if (password.length() < 6) {
+                                        inputPassword.setError("minimum_password");
+                                    } else {
+                                        Toast.makeText(MainActivity.this, "auth_failed",
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
                                     Intent intent = new Intent(MainActivity.this, Detailactivity.class);
                                     startActivity(intent);
-                                     Toast.makeText(MainActivity.this, "Login Success!",
-                                             Toast.LENGTH_SHORT).show();
+                                    finish();
                                 }
-                                else {
-                                     Toast.makeText(MainActivity.this, "Login Failed!",
-                                             Toast.LENGTH_SHORT).show();
-                                 }
                             }
                         });
-
             }
         });
-
     }
     @Override
     protected void onResume() {
