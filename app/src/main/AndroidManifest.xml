@@ -3,6 +3,7 @@
     package="com.forgan.login">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Detailactivity"></activity>
+        <activity android:name=".Detailactivity" />
+        <activity android:name=".Editprofile" />
+        <activity android:name=".Resetpassactivity"></activity>
     </application>
 
 </manifest>

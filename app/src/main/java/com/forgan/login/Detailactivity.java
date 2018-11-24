@@ -1,6 +1,7 @@
 package com.forgan.login;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,8 +19,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 public class Detailactivity extends AppCompatActivity {
-    private Button btn_click, btn_out;
-    private EditText txt_fullname, txt_topic, txt_content;
+    private Button btn_click, btn_out,btn_edit, call_btn;
+    private EditText txt_fullname, txt_topic, txt_content,et;
+
     ProgressBar progressBar;
 
     FirebaseDatabase db = FirebaseDatabase.getInstance();
@@ -33,6 +35,7 @@ public class Detailactivity extends AppCompatActivity {
         txt_fullname = (EditText) findViewById(R.id.txt_fullname);
         txt_topic = (EditText) findViewById(R.id.txt_topic);
         txt_content = (EditText) findViewById(R.id.txt_content);
+        et=(EditText)findViewById(R.id.editText1);
         progressBar.setVisibility(View.GONE);
 
         btn_click = (Button) findViewById(R.id.btn_click);
@@ -67,6 +70,28 @@ public class Detailactivity extends AppCompatActivity {
                         MainActivity.class));
             }
         });
+
+        btn_edit = (Button) findViewById(R.id.btn_edit);
+        btn_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Detailactivity.this, Editprofile.class));
+            }
+        });
+        call_btn=(Button)findViewById(R.id.button1);
+//        call_btn.setOnClickListener(new View.OnClickListener()
+//       {
+//            @Override
+//            public void onClick(View v) {
+//                String phoneNo = et.getText().toString();
+//                if(!TextUtils.isEmpty(phoneNo)) {
+//                    String dial = "tel:" + phoneNo;
+//                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(dial)));
+//                }else {
+//                    Toast.makeText(Detailactivity.this, "Enter a phone number", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
     }
     private void sendToFireBase(String get_fullname, String get_topic, String get_content) {
         progressBar.setVisibility(View.VISIBLE);
